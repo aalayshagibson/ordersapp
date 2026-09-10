@@ -1,0 +1,10 @@
+com\shadsluiter\ordersapp\controllers\OrdersController.class
+com\shadsluiter\ordersapp\data\UserRepository.class
+com\shadsluiter\ordersapp\service\OrderService.class
+com\shadsluiter\ordersapp\models\UserEntity.class
+com\shadsluiter\ordersapp\models\UserModel.class
+com\shadsluiter\ordersapp\models\OrderModel.class
+com\shadsluiter\ordersapp\service\UserService.class
+com\shadsluiter\ordersapp\data\OrderRepository.class
+com\shadsluiter\ordersapp\models\OrderEntity.class
+com\shadsluiter\ordersapp\OrdersappApplication.class

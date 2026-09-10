@@ -1,5 +1,6 @@
 package com.shadsluiter.ordersapp.models;
 
+// UserModel is used in the controller.  Translated to UserEntity in the service layer.
 public class UserModel {
 
     private String id;

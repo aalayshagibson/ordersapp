@@ -9,12 +9,14 @@ import com.shadsluiter.ordersapp.models.OrderModel;
 import java.util.ArrayList;
 import java.util.List;
 
+// Connects the OrderModel to the OrderEntity.  The OrderModel is used in the controller.  The OrderEntity is used in the repository.
 @Service
 public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
 
+    // helper methods used to make conversions between the OrderModel and OrderEntity
     private OrderModel convertToModel(OrderEntity orderEntity) {
         OrderModel orderModel = new OrderModel();
         orderModel.setId(String.valueOf(orderEntity.getId()));
@@ -35,6 +37,7 @@ public class OrderService {
         return orderEntity;
     }
 
+    // return all orders from the database.
     public List<OrderModel> findAll() {
         
         List<OrderEntity> orderEntities = orderRepository.findAll();
@@ -45,6 +48,7 @@ public class OrderService {
         return orderModels;
     }
 
+    // return orders by customer id
     public List<OrderModel> findByCustomerid(String customerid) {
         List<OrderEntity> orderEntities = orderRepository.findByCustomerid(Long.valueOf(customerid));
         List<OrderModel> orderModels = new ArrayList<>();
@@ -54,6 +58,7 @@ public class OrderService {
         return orderModels; 
     }
 
+    // save order
     public OrderModel save(OrderModel order) { 
         OrderEntity orderEntity = convertToEntity(order);
         orderEntity = orderRepository.save(orderEntity);
@@ -64,6 +69,7 @@ public class OrderService {
         orderRepository.deleteById(Long.valueOf(id));
     }
 
+    // make an update to an order. 
     public OrderModel updateOrder(String id, OrderModel order) {
         OrderEntity orderEntity = convertToEntity(order);
         orderEntity.setId(Long.valueOf(id));

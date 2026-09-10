@@ -2,6 +2,7 @@ package com.shadsluiter.ordersapp.models;
 
 import java.util.Date;
 
+// OrderModel is used in the controller.  Translated to OrderEntity in the service layer.
 public class OrderModel {
 
     private String id;

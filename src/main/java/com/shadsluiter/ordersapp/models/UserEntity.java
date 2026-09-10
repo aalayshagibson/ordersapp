@@ -2,6 +2,8 @@ package com.shadsluiter.ordersapp.models;
 
 import jakarta.persistence.*;
     
+// this app uses jpa (Java Persistence API) to interact with the database. No SQL statements are used in the code.
+// the @Entity annotation is used to mark this class as the interface between the database and the application. Property names are mapped to column names in the database.
 @Entity
 @Table(name = "users")
 public class UserEntity {
