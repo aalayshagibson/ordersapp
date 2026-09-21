@@ -18,23 +18,29 @@ public class OrdersController {
     @Autowired
     private OrderService orderService;
 
-    // Create order
+    // ==============================
+    // CREATE ORDER
+    // ==============================
     @PostMapping
     public ResponseEntity<OrderModel> createOrder(
             @RequestBody OrderModel order,
             Authentication authentication) {
 
+        // Get the username of the logged-in user
         String username = authentication.getName();
 
         // Use the logged-in user's username as the customer ID
         order.setCustomerid(username);
 
+        // Save the order
         OrderModel savedOrder = orderService.save(order);
 
         return ResponseEntity.ok(savedOrder);
     }
 
-    // Get all orders
+    // ==============================
+    // GET ALL ORDERS
+    // ==============================
     @GetMapping
     public ResponseEntity<List<OrderModel>> getAllOrders() {
 
@@ -43,7 +49,9 @@ public class OrdersController {
         return ResponseEntity.ok(orders);
     }
 
-    // Get orders by customer ID
+    // ==============================
+    // GET ORDERS BY CUSTOMER ID
+    // ==============================
     @GetMapping("/{customerid}")
     public ResponseEntity<List<OrderModel>> getOrdersByCustomerId(
             @PathVariable String customerid) {
@@ -54,17 +62,9 @@ public class OrdersController {
         return ResponseEntity.ok(orders);
     }
 
-    // Delete order
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOrder(
-            @PathVariable String id) {
-
-        orderService.delete(id);
-
-        return ResponseEntity.ok().build();
-    }
-
-    // Update order
+    // ==============================
+    // UPDATE ORDER
+    // ==============================
     @PutMapping("/{id}")
     public ResponseEntity<OrderModel> updateOrder(
             @PathVariable String id,
@@ -74,5 +74,17 @@ public class OrdersController {
                 orderService.updateOrder(id, order);
 
         return ResponseEntity.ok(updatedOrder);
+    }
+
+    // ==============================
+    // DELETE ORDER
+    // ==============================
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(
+            @PathVariable String id) {
+
+        orderService.delete(id);
+
+        return ResponseEntity.ok().build();
     }
 }
